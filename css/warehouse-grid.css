@@ -1,0 +1,26 @@
+.warehouse-grid {
+	width: 200px;
+	height: 200px;
+	display: flex;
+	flex-direction: column;
+}
+
+.warehouse-row {
+	flex-grow: 1;
+	display: flex;
+	flex-direction: row;
+}
+
+.warehouse-cell {
+	flex-grow: 1;
+}
+
+.warehouse-row:nth-child(odd)>.warehouse-cell:nth-child(odd),
+.warehouse-row:nth-child(even)>.warehouse-cell:nth-child(even) {
+	background-color: var(--c-bg0);
+}
+
+.warehouse-row:nth-child(odd)>.warehouse-cell:nth-child(even),
+.warehouse-row:nth-child(even)>.warehouse-cell:nth-child(odd) {
+	background-color: var(--c-bg2);
+}
