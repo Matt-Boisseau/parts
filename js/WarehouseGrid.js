@@ -34,6 +34,7 @@ export class WarehouseGrid {
 				for(let col = 0; col < this.cells[0].length; col++) {
 					let cellElement = document.createElement('div');
 					cellElement.classList.add('warehouse-cell');
+					cellElement.addEventListener("click", () => { this.moveBox(col, row) });
 					rowElement.appendChild(cellElement);
 					this.cells[row][col].element = cellElement;
 				}
@@ -44,15 +45,7 @@ export class WarehouseGrid {
 
 	addNewBox(x, y, facing, length) {
 
-		let { dx, dy } = (() => {
-			switch (facing) {
-				case BoxPart.directions.NORTH: return { dx: 0, dy: -1 };
-				case BoxPart.directions.EAST: return { dx: 1, dy: 0 };
-				case BoxPart.directions.SOUTH: return { dx: 0, dy: 1 };
-				case BoxPart.directions.WEST: return { dx: -1, dy: 0 };
-				default: return { dx: 0, dy: 0 };
-			}
-		})();
+		let { dx, dy } = BoxPart.directionToVector(facing);
 
 		for(let i = 0; i < length; i++) {
 
@@ -65,10 +58,42 @@ export class WarehouseGrid {
 					default: return BoxPart.directions.NONE; // no direction for the middle guys
 				}
 			})();
-			console.log(partFacing);
 
-			cell.boxPart = new BoxPart(partFacing, null);
+			cell.boxPart = new BoxPart(partFacing, null, this);
 			cell.element.appendChild(cell.boxPart.element);
+		}
+	}
+
+	moveBox(x, y) {
+
+		let clickedCell = this.cells[y][x];
+
+		if (clickedCell.boxPart != null) {
+
+			let { dx, dy } = BoxPart.directionToVector(clickedCell.boxPart.facing);
+
+			// note that we only have to check the leading boxParts for clearance--connected boxParts will can always move if the lead can move
+			if (x + dx < 0 || x + dx >= this.width || y + dy < 0 || y + dy >= this.height) {
+				// moving off the board - delete these boxes
+				clickedCell.element.removeChild(clickedCell.boxPart.element);
+				clickedCell.boxPart = null;
+			}
+
+			// if not leaving the board:
+			else {
+
+				let targetCell = this.cells[y + dy][x + dx];
+
+				// give up if there's another box in the way
+				if (targetCell.boxPart != null) {
+					return;
+				}
+	
+				targetCell.boxPart = clickedCell.boxPart;
+				targetCell.element.appendChild(clickedCell.boxPart.element);
+	
+				clickedCell.boxPart = null;
+			}
 		}
 	}
 }
