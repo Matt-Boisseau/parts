@@ -7,26 +7,26 @@
 	cursor: pointer;
 }
 
-.box-part:not(.facing-1):hover {
+.box-part:not(.facing-none):hover {
 	background-color: var(--c-primary);
 }
 
-.box-part.facing-1 {
+.box-part.facing-none {
 	cursor: default;
 }
 
-.box-part.facing0 {
+.box-part.facing-north {
 	border-radius: var(--roundness) var(--roundness) 0 0;
 }
 
-.box-part.facing1 {
+.box-part.facing-east {
 	border-radius: 0 var(--roundness) var(--roundness) 0;
 }
 
-.box-part.facing2 {
+.box-part.facing-south {
 	border-radius: 0 0 var(--roundness) var(--roundness);
 }
 
-.box-part.facing3 {
+.box-part.facing-west {
 	border-radius: var(--roundness) 0 0 var(--roundness);
 }

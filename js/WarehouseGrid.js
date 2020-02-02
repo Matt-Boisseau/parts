@@ -45,7 +45,7 @@ export class WarehouseGrid {
 
 	addNewBox(x, y, facing, length) {
 
-		let { dx, dy } = BoxPart.directionToVector(facing);
+		let { dx, dy } = facing;
 
 		for(let i = 0; i < length; i++) {
 
@@ -53,7 +53,7 @@ export class WarehouseGrid {
 
 			let partFacing = (() => {
 				switch (i) {
-					case 0: return (facing + 2) % 4; // opposite direction for back of the line
+					case 0: return BoxPart.oppositeDirection(facing); // opposite direction for back of the line
 					case (length - 1): return facing; // inputted direction for front of the line
 					default: return BoxPart.directions.NONE; // no direction for the middle guys
 				}
@@ -70,7 +70,7 @@ export class WarehouseGrid {
 
 		if (clickedCell.boxPart != null) {
 
-			let { dx, dy } = BoxPart.directionToVector(clickedCell.boxPart.facing);
+			let { dx, dy } = clickedCell.boxPart.facing;
 
 			// note that we only have to check the leading boxParts for clearance--connected boxParts will can always move if the lead can move
 			if (x + dx < 0 || x + dx >= this.width || y + dy < 0 || y + dy >= this.height) {
