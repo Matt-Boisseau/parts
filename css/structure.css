@@ -1,0 +1,36 @@
+body {
+	margin: 0;
+	color: var(--c-text-light);
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+header, #shop, #warehouse {
+	padding: 20px;
+}
+
+header {
+	background-color: var(--c-bg2);
+	flex-grow: 0;
+}
+
+main {
+	display: flex;
+	flex-direction: row;
+	flex-grow: 1;
+}
+
+main>* {
+	min-width: 400px;
+	min-height: 400px;
+	flex-grow: 1;
+}
+
+#shop {
+	background-color: var(--c-bg0);
+}
+
+#warehouse {
+	background-color: var(--c-bg1);
+}
