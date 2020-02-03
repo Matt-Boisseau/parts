@@ -18,9 +18,11 @@
 .warehouse-row:nth-child(odd)>.warehouse-cell:nth-child(odd),
 .warehouse-row:nth-child(even)>.warehouse-cell:nth-child(even) {
 	background-color: var(--c-bg0);
+	border-color: var(--c-bg0);
 }
 
 .warehouse-row:nth-child(odd)>.warehouse-cell:nth-child(even),
 .warehouse-row:nth-child(even)>.warehouse-cell:nth-child(odd) {
 	background-color: var(--c-bg2);
+	border-color: var(--c-bg2);
 }
