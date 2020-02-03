@@ -1,18 +1,19 @@
 .warehouse-grid {
-	width: 200px;
-	height: 200px;
+	width: 300px;
+	height: 300px;
 	display: flex;
 	flex-direction: column;
+	user-select: none;
 }
 
 .warehouse-row {
-	flex-grow: 1;
+	flex: 1 0 0;
 	display: flex;
 	flex-direction: row;
 }
 
 .warehouse-cell {
-	flex-grow: 1;
+	flex: 1 0 0;
 }
 
 .warehouse-row:nth-child(odd)>.warehouse-cell:nth-child(odd),

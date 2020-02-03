@@ -1,4 +1,5 @@
 import {BoxPart} from './BoxPart.js';
+import { Hardware } from './Hardware.js';
 
 export class WarehouseGrid {
 
@@ -43,7 +44,7 @@ export class WarehouseGrid {
 		})();
 	}
 
-	addNewBox(x, y, facing, length) {
+	addNewBox(x, y, facing, length, hardware) {
 
 		// early exit if any of the cells is already occupied OR if any of the cells is off the grid
 		for (let i = 0; i < length; i++) {
@@ -64,7 +65,7 @@ export class WarehouseGrid {
 				}
 			})();
 
-			cell.boxPart = new BoxPart(partFacing, length);
+			cell.boxPart = new BoxPart(partFacing, length, hardware);
 			cell.element.appendChild(cell.boxPart.element);
 		}
 
@@ -73,15 +74,19 @@ export class WarehouseGrid {
 	}
 
 	addRandomBox(attempts, minLength, maxLength) {
+
+		let hardware = Hardware[Object.keys(Hardware)[Math.floor(Math.random() * Object.keys(Hardware).length)]];
+
 		for (let i = 0; i < attempts; i++) {
 			let length = minLength + Math.floor(Math.random() * (maxLength - minLength + 1));
 			let x = Math.floor(Math.random() * this.width);
 			let y = Math.floor(Math.random() * this.height);
 			let facing = [BoxPart.directions.NORTH, BoxPart.directions.EAST, BoxPart.directions.SOUTH, BoxPart.directions.WEST][Math.floor(Math.random() * 4)];
-			if (this.addNewBox(x, y, facing, length)) {
+			if (this.addNewBox(x, y, facing, length, hardware)) {
 				return;
 			}
 		}
+
 		console.log('unable to add random box after ' + attempts + ' attempts :(');
 	}
 

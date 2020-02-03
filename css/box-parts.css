@@ -5,6 +5,13 @@
 	height: 100%;
 	background-color: var(--c-secondary);
 	cursor: pointer;
+	display: flex;
+	align-items: center;
+}
+
+.box-part>span {
+	flex: 1 0 0;
+	text-align: center;
 }
 
 .box-part:not(.facing-none):hover {

@@ -1,10 +1,11 @@
 export class BoxPart {
 
-	constructor(facing, length) {
+	constructor(facing, length, hardware) {
 
 		// parameters
 		this.facing = facing;
 		this.length = length;
+		this.hardware = hardware;
 
 		this.connectedParts = null;
 
@@ -13,6 +14,9 @@ export class BoxPart {
 			let element = document.createElement('div');
 			element.classList.add('box-part');
 			element.classList.add('facing-' + this.directionName(facing));
+			let textElement = document.createElement('span');
+			textElement.innerHTML = this.hardware.part;
+			element.appendChild(textElement);
 			return element;
 		})();
 	}
