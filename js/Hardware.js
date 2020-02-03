@@ -1,8 +1,4 @@
 export const Hardware = {
-	NAIL: {
-		part: 'nail',
-		tool: 'hammer'
-	},
 	SCREW: {
 		part: 'screw',
 		tool: 'screwdriver'

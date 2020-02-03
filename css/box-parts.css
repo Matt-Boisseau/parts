@@ -8,59 +8,60 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
-	color: var(--c-text-dark);
 	border-width: 0;
 	border-style: solid;
 	border-color: inherit;
 }
 
+/* EXPERIMENTAL ICONS INSTEAD OF TEXT */
+.box-part {
+	background-repeat: no-repeat;
+	background-size: 75%;
+	background-position: center;
+}
+.part-nail { background-image: url('../icons/part-nail.png'); }
+.part-hammer { background-image: url('../icons/tool-hammer.png'); }
+.part-screw { background-image: url('../icons/part-screw.png'); }
+.part-screwdriver { background-image: url('../icons/tool-screwdriver.png'); }
+.part-bolt { background-image: url('../icons/part-bolt.png'); }
+.part-wrench { background-image: url('../icons/tool-wrench.png'); }
+.part-solder { background-image: url('../icons/part-solder.png'); }
+.part-soldering-iron { background-image: url('../icons/tool-soldering-iron.png'); }
+.part-wire { background-image: url('../icons/part-wire.png'); }
+.part-wire-crimper { background-image: url('../icons/tool-wire-crimper.png'); }
+
 .box-part>span {
+	color: var(--c-text-dark);
+	opacity: 0;
 	font-family: 'Special Elite', cursive;
 	font-weight: bold;
 	font-size: 12px;
-	flex: 0 0 100%;
+	flex: 1 0 0;
 	text-align: center;
-}
-
-.box-part.part-nail>span,
-.box-part.part-hammer>span {
-	transform: rotate(0deg);
-	font-size: 18px;
+	text-transform: uppercase;
 	text-decoration: underline;
-	text-transform: uppercase;
+	padding: 5px 0;
+	background-color: var(--c-text-light);
+	transition: opacity 0s;
 }
 
-.box-part.part-screw>span,
-.box-part.part-screwdriver>span {
-	transform: rotate(90deg);
+.box-part:hover>span {
+	opacity: 1;
+	transition: opacity 0.25s ease-out;
+	transition-delay: 0.2s;
 }
 
-.box-part.part-bolt>span,
-.box-part.part-wrench>span {
-	transform: rotate(-30deg);
-	font-size: 16px;
-}
-
-.box-part.part-solder>span,
-.box-part.part-soldering-iron>span {
-	transform: rotate(-45deg);
-	text-decoration: underline;
-	text-transform: uppercase;
-}
-
-.box-part.part-wire>span,
-.box-part.part-wire-crimper>span {
-	transform: rotate(0deg);
-	letter-spacing: 0.3em;
-	text-transform: uppercase;
+.box-part.facing-horizontal>span,
+.box-part.facing-east>span,
+.box-part.facing-west>span {
+	transform: rotate(-90deg);
 }
 
 .box-part.card {
 	height: 80px;
 	width: 80px;
-	background-color: var(--c-bg2);
+	background-color: var(--c-text-light);
 	border-radius: var(--roundness);
-	color: var(--c-text-light);
 }
 
 .warehouse-cell:hover .box-part:not(.facing-vertical):not(.facing-horizontal) {

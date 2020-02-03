@@ -1,15 +1,9 @@
-#inventory {
-	display: flex;
-	flex-direction: row;
-}
-
-#hand {
-	flex-grow: 1;
-	padding: 0 20px;
-}
-
-#hand>div {
+#inventory, #hand>div {
 	display: flex;
 	flex-direction: row;
 	justify-content: space-between;
+}
+
+#inventory>div {
+	flex: 0 0 50%;
 }
