@@ -3,7 +3,6 @@
 	height: 400px;
 	display: flex;
 	flex-direction: column;
-	user-select: none;
 }
 
 .warehouse-row {

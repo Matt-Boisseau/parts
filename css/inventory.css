@@ -1,0 +1,20 @@
+#inventory {
+	display: flex;
+	flex-direction: row;
+}
+
+#hand {
+	flex-grow: 1;
+	padding: 0 20px;
+}
+
+#hand>div {
+	display: flex;
+	flex-direction: row;
+	align-content: space-between;
+}
+
+#hand .card {
+	background-color: var(--c-secondary);
+	color: var(--c-text-dark);
+}

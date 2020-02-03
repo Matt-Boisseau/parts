@@ -1,13 +1,15 @@
-import {BoxPart} from './BoxPart.js';
+import { BoxPart } from './BoxPart.js';
 import { Hardware } from './Hardware.js';
 
 export class WarehouseGrid {
 
-	constructor(width, height) {
+	//TODO: how to remove inventory reference in constructor? must be a better way
+	constructor(width, height, inventory) {
 
 		// parameters
 		this.width = width;
 		this.height = height;
+		this.inventory = inventory;
 
 		// 2d cells array
 		this.cells = (() => {
@@ -103,6 +105,7 @@ export class WarehouseGrid {
 				let length = clickedCell.boxPart.length;
 				for (let i = 0; i < length; i++) {
 					let cell = this.cells[y - (dy * i)][x - (dx * i)];
+					this.inventory.addNewCard(cell.boxPart.hardware.part);
 					cell.element.removeChild(cell.boxPart.element);
 					cell.boxPart = null;
 				}
