@@ -11,10 +11,5 @@
 #hand>div {
 	display: flex;
 	flex-direction: row;
-	align-content: space-between;
-}
-
-#hand .card {
-	background-color: var(--c-secondary);
-	color: var(--c-text-dark);
+	justify-content: space-between;
 }

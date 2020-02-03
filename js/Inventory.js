@@ -22,6 +22,7 @@ export class Inventory {
 
 	draw() {
 
+		// discard and draw
 		for (let i = 0; i < this.handSize; i++) {
 
 			// discard any card in this slot
@@ -42,6 +43,23 @@ export class Inventory {
 			// draw a random card (removing it from the deck)
 			this.hand[i] = this.deck.splice(Math.floor(Math.random() * this.deck.length), 1)[0];
 		}
+
+		let handElement = document.querySelector('#hand>div');
+
+		// clear card elements in hand
+		while (handElement.firstChild) {
+			handElement.removeChild(handElement.firstChild);
+		}
+
+		// add new card elements
+		this.hand.forEach(card => {
+			let cardElement = document.createElement('div');
+			cardElement.classList.add('box-part', 'card', 'part-' + card.replace(/\s+/g, '-')); // card name has spaces replaced with hyphens
+			let cardText = document.createElement('span');
+			cardText.innerHTML = card;
+			cardElement.appendChild(cardText);
+			handElement.appendChild(cardElement);
+		});
 
 		console.log(this.deck);
 		console.log(this.hand);

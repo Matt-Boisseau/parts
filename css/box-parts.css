@@ -22,39 +22,53 @@
 	text-align: center;
 }
 
-.box-part.part-nail>span {
+.box-part.part-nail>span,
+.box-part.part-hammer>span {
 	transform: rotate(0deg);
 	font-size: 18px;
 	text-decoration: underline;
 	text-transform: uppercase;
 }
 
-.box-part.part-screw>span {
+.box-part.part-screw>span,
+.box-part.part-screwdriver>span {
 	transform: rotate(90deg);
 }
 
-.box-part.part-bolt>span {
+.box-part.part-bolt>span,
+.box-part.part-wrench>span {
 	transform: rotate(-30deg);
 	font-size: 16px;
 }
 
-.box-part.part-solder>span {
+.box-part.part-solder>span,
+.box-part.part-soldering-iron>span {
 	transform: rotate(-45deg);
 	text-decoration: underline;
 	text-transform: uppercase;
 }
 
-.box-part.part-wire>span {
+.box-part.part-wire>span,
+.box-part.part-wire-crimper>span {
 	transform: rotate(0deg);
 	letter-spacing: 0.3em;
 	text-transform: uppercase;
+}
+
+.box-part.card {
+	height: 80px;
+	width: 80px;
+	background-color: var(--c-bg2);
+	border-radius: var(--roundness);
+	color: var(--c-text-light);
 }
 
 .warehouse-cell:hover .box-part:not(.facing-vertical):not(.facing-horizontal) {
 	background-color: var(--c-primary);
 }
 
-.box-part.facing-vertical, .box-part.facing-horizontal {
+.box-part.facing-vertical, .box-part.facing-horizontal,
+.box-part.card {
 	cursor: default;
 }
 
