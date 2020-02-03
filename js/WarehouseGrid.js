@@ -45,9 +45,11 @@ export class WarehouseGrid {
 
 	addNewBox(x, y, facing, length) {
 
+		let boxParts = [];
+
 		let { dx, dy } = facing;
 
-		for(let i = 0; i < length; i++) {
+		for (let i = 0; i < length; i++) {
 
 			let cell = this.cells[y + (dy * i)][x + (dx * i)];
 
@@ -59,7 +61,8 @@ export class WarehouseGrid {
 				}
 			})();
 
-			cell.boxPart = new BoxPart(partFacing, null, this);
+			boxParts.push(new BoxPart(partFacing, length));
+			cell.boxPart = boxParts[i];
 			cell.element.appendChild(cell.boxPart.element);
 		}
 	}
@@ -72,14 +75,17 @@ export class WarehouseGrid {
 
 			let { dx, dy } = clickedCell.boxPart.facing;
 
-			// note that we only have to check the leading boxParts for clearance--connected boxParts will can always move if the lead can move
+			// moving off the board (delete the boxParts)
 			if (x + dx < 0 || x + dx >= this.width || y + dy < 0 || y + dy >= this.height) {
-				// moving off the board - delete these boxes
-				clickedCell.element.removeChild(clickedCell.boxPart.element);
-				clickedCell.boxPart = null;
+				let length = clickedCell.boxPart.length;
+				for (let i = 0; i < length; i++) {
+					let cell = this.cells[y - (dy * i)][x - (dx * i)];
+					cell.element.removeChild(cell.boxPart.element);
+					cell.boxPart = null;
+				}
 			}
 
-			// if not leaving the board:
+			// moving within the board (move the boxParts)
 			else {
 
 				let targetCell = this.cells[y + dy][x + dx];
@@ -88,11 +94,15 @@ export class WarehouseGrid {
 				if (targetCell.boxPart != null) {
 					return;
 				}
-	
-				targetCell.boxPart = clickedCell.boxPart;
-				targetCell.element.appendChild(clickedCell.boxPart.element);
-	
-				clickedCell.boxPart = null;
+
+				let length = clickedCell.boxPart.length;
+				for (let i = 0; i < length; i++) {
+					let cell = this.cells[y - (dy * i)][x - (dx * i)];
+					let targetCell = this.cells[y - (dy * i) + dy][x - (dx * i) + dx]
+					targetCell.boxPart = cell.boxPart;
+					targetCell.element.appendChild(cell.boxPart.element);
+					cell.boxPart = null;
+				}
 			}
 		}
 	}

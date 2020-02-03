@@ -1,0 +1,23 @@
+= Parts
+
+repair jobs come in every turn
+
+they need x amount of various parts
+
+every part requires a specific tool to apply it to the job (screwdriver for screws, hammer for nails, etc)
+
+start with tools in your deck
+
+get a new random tool for completing a job
+
+get parts by pulling them out of the warehouse
+
+tools don't get removed from your deck when used - parts do
+
+always draw to x cards
+
+if you have the right tool in your hand, you can play corresponding parts (which get replaced by new cards from your deck?)
+
+at any time, you can end the turn - new job comes in, draw a fresh hand, new parts shipments appear randomly
+
+grabbing parts you don't want is bad, because it will saturate your deck with garbage

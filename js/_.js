@@ -8,5 +8,5 @@ window.onload = () => {
 	document.querySelector('#warehouse').appendChild(warehouse.element);
 
 	// add a test box
-	warehouse.addNewBox(2, 0, BoxPart.directions.SOUTH, 3);
+	warehouse.addNewBox(2, 1, BoxPart.directions.EAST, 3);
 }

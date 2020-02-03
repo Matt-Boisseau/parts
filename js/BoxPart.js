@@ -1,10 +1,12 @@
 export class BoxPart {
 
-	constructor(facing, connectedParts) {
+	constructor(facing, length) {
 
 		// parameters
 		this.facing = facing;
-		this.connectedParts = connectedParts;
+		this.length = length;
+
+		this.connectedParts = null;
 
 		// DOM element
 		this.element = (() => {
