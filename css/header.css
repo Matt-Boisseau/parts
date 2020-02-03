@@ -7,6 +7,7 @@ header {
 }
 
 header>h1 {
+	color: var(--c-primary);
 	flex-grow: 1;
 	margin: 0;
 }

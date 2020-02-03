@@ -14,6 +14,7 @@ export class BoxPart {
 			let element = document.createElement('div');
 			element.classList.add('box-part');
 			element.classList.add('facing-' + this.directionName(facing));
+			element.classList.add('part-' + this.hardware.part);
 			let textElement = document.createElement('span');
 			textElement.innerHTML = this.hardware.part;
 			element.appendChild(textElement);

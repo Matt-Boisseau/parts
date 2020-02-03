@@ -15,8 +15,39 @@
 }
 
 .box-part>span {
-	flex: 1 0 0;
+	font-family: 'Special Elite', cursive;
+	font-weight: bold;
+	font-size: 12px;
+	flex: 0 0 100%;
 	text-align: center;
+}
+
+.box-part.part-nail>span {
+	transform: rotate(0deg);
+	font-size: 18px;
+	text-decoration: underline;
+	text-transform: uppercase;
+}
+
+.box-part.part-screw>span {
+	transform: rotate(90deg);
+}
+
+.box-part.part-bolt>span {
+	transform: rotate(-30deg);
+	font-size: 16px;
+}
+
+.box-part.part-solder>span {
+	transform: rotate(-45deg);
+	text-decoration: underline;
+	text-transform: uppercase;
+}
+
+.box-part.part-wire>span {
+	transform: rotate(0deg);
+	letter-spacing: 0.3em;
+	text-transform: uppercase;
 }
 
 .warehouse-cell:hover .box-part:not(.facing-vertical):not(.facing-horizontal) {
