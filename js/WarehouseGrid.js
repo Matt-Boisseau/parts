@@ -61,7 +61,7 @@ export class WarehouseGrid {
 				switch (i) {
 					case 0: return BoxPart.oppositeDirection(facing); // opposite direction for back of the line
 					case (length - 1): return facing; // inputted direction for front of the line
-					default: return BoxPart.directions.NONE; // no direction for the middle guys
+					default: return BoxPart.middleDirection(facing); // no direction for the middle guys
 				}
 			})();
 

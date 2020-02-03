@@ -1,5 +1,6 @@
 .box-part {
 	--roundness: 10px;
+	--margin: 5px;
 
 	width: 100%;
 	height: 100%;
@@ -7,6 +8,7 @@
 	cursor: pointer;
 	display: flex;
 	align-items: center;
+	color: var(--c-text-dark)
 }
 
 .box-part>span {
@@ -14,26 +16,48 @@
 	text-align: center;
 }
 
-.box-part:not(.facing-none):hover {
+.box-part:not(.facing-vertical):not(.facing-horizontal):hover {
 	background-color: var(--c-primary);
 }
 
-.box-part.facing-none {
+.box-part.facing-vertical, .box-part.facing-horizontal {
 	cursor: default;
 }
 
 .box-part.facing-north {
 	border-radius: var(--roundness) var(--roundness) 0 0;
+	margin: var(--margin) 0 0 var(--margin);
+	width: calc(100% - var(--margin) * 2);
+	height: calc(100% - var(--margin));
 }
 
 .box-part.facing-east {
 	border-radius: 0 var(--roundness) var(--roundness) 0;
+	margin: var(--margin) var(--margin) var(--margin) 0;
+	width: calc(100% - var(--margin));
+	height: calc(100% - var(--margin) * 2);
 }
 
 .box-part.facing-south {
 	border-radius: 0 0 var(--roundness) var(--roundness);
+	margin: 0 0 var(--margin) var(--margin);
+	width: calc(100% - var(--margin) * 2);
+	height: calc(100% - var(--margin) );
 }
 
 .box-part.facing-west {
 	border-radius: var(--roundness) 0 0 var(--roundness);
+	margin: var(--margin) 0 var(--margin) var(--margin);
+	width: calc(100% - var(--margin));
+	height: calc(100% - var(--margin) * 2);
+}
+
+.box-part.facing-vertical {
+	margin: 0 0 var(--margin) var(--margin);
+	width: calc(100% - var(--margin) * 2);
+}
+
+.box-part.facing-horizontal {
+	margin: var(--margin) 0 0 0;
+	height: calc(100% - var(--margin) * 2);
 }

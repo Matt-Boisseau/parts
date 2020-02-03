@@ -23,7 +23,8 @@ export class BoxPart {
 
 	// cardinal direction constants
 	static directions = {
-		NONE: { dx: 0, dy: 0 },
+		VERTICAL: { dx: 0, dy: 0 },
+		HORIZONTAL: { dx: 0, dy: 0 },
 		NORTH: { dx: 0, dy: -1 },
 		EAST: { dx: 1, dy: 0 },
 		SOUTH: { dx: 0, dy: 1 },
@@ -36,7 +37,17 @@ export class BoxPart {
 			case BoxPart.directions.EAST: return BoxPart.directions.WEST;
 			case BoxPart.directions.SOUTH: return BoxPart.directions.NORTH;
 			case BoxPart.directions.WEST: return BoxPart.directions.EAST;
-			default: return 'none';
+			default: return null;
+		}
+	}
+
+	static middleDirection(direction) {
+		switch (direction) {
+			case BoxPart.directions.NORTH: return BoxPart.directions.VERTICAL;
+			case BoxPart.directions.EAST: return BoxPart.directions.HORIZONTAL;
+			case BoxPart.directions.SOUTH: return BoxPart.directions.VERTICAL;
+			case BoxPart.directions.WEST: return BoxPart.directions.HORIZONTAL;
+			default: return null;
 		}
 	}
 
@@ -46,7 +57,9 @@ export class BoxPart {
 			case BoxPart.directions.EAST: return 'east';
 			case BoxPart.directions.SOUTH: return 'south';
 			case BoxPart.directions.WEST: return 'west';
-			default: return 'none';
+			case BoxPart.directions.VERTICAL: return 'vertical';
+			case BoxPart.directions.HORIZONTAL: return 'horizontal';
+			default: return null;
 		}
 	}
 }
