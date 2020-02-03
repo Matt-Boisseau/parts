@@ -1,0 +1,27 @@
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-content: center;
+	vertical-align: middle;
+}
+
+header>h1 {
+	flex-grow: 1;
+	margin: 0;
+}
+
+header>p {
+	margin: 0 0 0 20px;
+}
+
+@media (max-width: 900px) {
+
+	header {
+		flex-direction: column;
+	}
+
+	header>p {
+		margin: 20px 0 0 0;
+	}
+}

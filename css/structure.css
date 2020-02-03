@@ -4,6 +4,7 @@ body {
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
+	font-family: Arial, Helvetica, sans-serif;
 }
 
 header, #shop, #warehouse {
@@ -22,8 +23,6 @@ main {
 }
 
 main>* {
-	min-width: 400px;
-	min-height: 400px;
 	flex-grow: 1;
 }
 

@@ -1,0 +1,7 @@
+a:link, a:visited {
+	color: var(--c-secondary);
+}
+
+a:hover {
+	color: var(--c-primary);
+}
