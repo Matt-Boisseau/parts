@@ -45,13 +45,16 @@ export class WarehouseGrid {
 
 	addNewBox(x, y, facing, length) {
 
-		let boxParts = [];
-
-		let { dx, dy } = facing;
+		// early exit if any of the cells is already occupied OR if any of the cells is off the grid
+		for (let i = 0; i < length; i++) {
+			let target = { x: x + facing.dx * i, y: y + facing.dy * i };
+			if (target.x < 0 || target.x >= this.width || target.y < 0 || target.y >= this.height) return false;
+			if (this.cells[target.y][target.x].boxPart != null) return false;
+		}
 
 		for (let i = 0; i < length; i++) {
 
-			let cell = this.cells[y + (dy * i)][x + (dx * i)];
+			let cell = this.cells[y + (facing.dy * i)][x + (facing.dx * i)];
 
 			let partFacing = (() => {
 				switch (i) {
@@ -61,10 +64,25 @@ export class WarehouseGrid {
 				}
 			})();
 
-			boxParts.push(new BoxPart(partFacing, length));
-			cell.boxPart = boxParts[i];
+			cell.boxPart = new BoxPart(partFacing, length);
 			cell.element.appendChild(cell.boxPart.element);
 		}
+
+		// return true if everything worked
+		return true;
+	}
+
+	addRandomBox(attempts, minLength, maxLength) {
+		for (let i = 0; i < attempts; i++) {
+			let length = minLength + Math.floor(Math.random() * (maxLength - minLength + 1));
+			let x = Math.floor(Math.random() * this.width);
+			let y = Math.floor(Math.random() * this.height);
+			let facing = [BoxPart.directions.NORTH, BoxPart.directions.EAST, BoxPart.directions.SOUTH, BoxPart.directions.WEST][Math.floor(Math.random() * 4)];
+			if (this.addNewBox(x, y, facing, length)) {
+				return;
+			}
+		}
+		console.log('unable to add random box after ' + attempts + ' attempts :(');
 	}
 
 	moveBox(x, y) {
