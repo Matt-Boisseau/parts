@@ -11,9 +11,9 @@
 	border-width: 0;
 	border-style: solid;
 	border-color: inherit;
+	overflow: hidden;
 }
 
-/* EXPERIMENTAL ICONS INSTEAD OF TEXT */
 .box-part {
 	background-repeat: no-repeat;
 	background-size: 75%;
