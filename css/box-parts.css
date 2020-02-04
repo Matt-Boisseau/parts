@@ -64,6 +64,10 @@
 	border-radius: var(--roundness);
 }
 
+.box-part.card.spacer {
+	background-color: transparent;
+}
+
 #inventory .box-part.card {
 	height: 40px;
 	width: 40px;
