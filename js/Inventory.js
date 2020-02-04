@@ -44,55 +44,33 @@ export class Inventory {
 			this.hand[i] = this.deck.splice(Math.floor(Math.random() * this.deck.length), 1)[0];
 		}
 
-		// update hand elements
-		let handElement = document.querySelector('#hand>div');
-		while (handElement.firstChild) {
-			handElement.removeChild(handElement.firstChild);
-		}
-		this.hand.forEach(card => {
-			let cardElement = document.createElement('div');
-			cardElement.classList.add('box-part', 'card', 'part-' + card.replace(/\s+/g, '-')); // card name has spaces replaced with hyphens
-			let cardText = document.createElement('span');
-			cardText.innerHTML = card;
-			cardElement.appendChild(cardText);
-			handElement.appendChild(cardElement);
-		});
+		// sort cards
+		this.deck.sort();
+		this.discard.sort();
 
-		// update pile elements
-		let deckPileElement = document.querySelector('#deck');
-		while (deckPileElement.firstChild) {
-			deckPileElement.removeChild(deckPileElement.firstChild);
-		}
-		this.deck.forEach(card => {
-			let cardElement = document.createElement('div');
-			cardElement.classList.add('box-part', 'card', 'part-' + card.replace(/\s+/g, '-')); // card name has spaces replaced with hyphens
-			let cardText = document.createElement('span');
-			cardText.innerHTML = card;
-			cardElement.appendChild(cardText);
-			deckPileElement.appendChild(cardElement);
-		});
-
-		// update discard elements
-		let discardPileElement = document.querySelector('#discard');
-		while (discardPileElement.firstChild) {
-			discardPileElement.removeChild(discardPileElement.firstChild);
-		}
-		this.discard.forEach(card => {
-			let cardElement = document.createElement('div');
-			cardElement.classList.add('box-part', 'card', 'part-' + card.replace(/\s+/g, '-')); // card name has spaces replaced with hyphens
-			let cardText = document.createElement('span');
-			cardText.innerHTML = card;
-			cardElement.appendChild(cardText);
-			discardPileElement.appendChild(cardElement);
-		});
-
-		console.log(this.deck);
-		console.log(this.hand);
-		console.log(this.discard);
+		// update elements
+		this.updateElement('#hand>div', this.hand);
+		this.updateElement('#deck>div', this.deck);
+		this.updateElement('#discard>div', this.discard);
 	}
 
 	shuffle() {
 		this.deck = this.deck.concat(this.discard);
 		this.discard = [];
+	}
+
+	updateElement(query, cards) {
+		let element = document.querySelector(query);
+		while (element.firstChild) {
+			element.removeChild(element.firstChild);
+		}
+		cards.forEach(card => {
+			let cardElement = document.createElement('div');
+			cardElement.classList.add('box-part', 'card', 'part-' + card.replace(/\s+/g, '-')); // card name has spaces replaced with hyphens
+			let cardText = document.createElement('span');
+			cardText.innerHTML = card;
+			cardElement.appendChild(cardText);
+			element.appendChild(cardElement);
+		});
 	}
 }

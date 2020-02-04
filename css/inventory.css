@@ -1,3 +1,8 @@
+#inventory {
+	flex: 1 0 100px;
+	overflow: hidden;
+}
+
 #inventory, #hand>div {
 	display: flex;
 	flex-direction: row;
@@ -6,4 +11,12 @@
 
 #inventory>div {
 	flex: 0 0 50%;
+}
+
+#inventory>div>div {
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-items: space-between;
+	align-content: flex-start;
 }

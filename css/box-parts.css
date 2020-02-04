@@ -64,6 +64,13 @@
 	border-radius: var(--roundness);
 }
 
+#inventory .box-part.card {
+	height: 40px;
+	width: 40px;
+	border-radius: 0;
+	margin: 0 2px 2px 0;
+}
+
 .warehouse-cell:hover .box-part:not(.facing-vertical):not(.facing-horizontal) {
 	background-color: var(--c-primary);
 }
