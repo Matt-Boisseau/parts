@@ -48,7 +48,7 @@
 .box-part:hover>span {
 	opacity: 1;
 	transition: opacity 0.25s ease-out;
-	transition-delay: 0.2s;
+	transition-delay: 0.5s;
 }
 
 .box-part.facing-horizontal>span,
