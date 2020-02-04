@@ -50,16 +50,22 @@ main {
 }
 
 #restock-button {
-	text-align: center;
 	cursor: pointer;
+	text-align: center;
 	color: var(--c-text-dark);
 	background-color: var(--c-secondary);
 }
 
-#restock-button:hover {
+#restock-button.busy {
+	cursor: not-allowed;
+	color: var(--c-text-light);
+	background-color: var(--c-bg1);
+}
+
+#restock-button:not(.busy):hover {
 	background-color: var(--c-primary);
 }
 
-#restock-button:active:hover {
+#restock-button:not(.busy):active:hover {
 	background-color: var(--c-secondary);
 }

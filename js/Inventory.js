@@ -1,4 +1,5 @@
 import { Hardware } from './Hardware.js';
+import { wait } from './SynchronousWait.js';
 
 export class Inventory {
 
@@ -14,6 +15,7 @@ export class Inventory {
 		}
 		this.hand = [];
 		this.discard = [];
+		this.busy = false;
 	}
 
 	addNewCard(hardware) {
@@ -21,52 +23,46 @@ export class Inventory {
 		this.updateAllElements();
 	}
 
-	draw() {
+	async draw() {
 
 		// discard the hand
 		this.discard = this.discard.concat(this.hand);
 		this.hand = [];
-		this.updateAllElements();
+		await this.updateAllElements();
 
-		let didShuffle = false;
-		setTimeout(() => {
+		// draw
+		for (let i = 0; i < this.handSize; i++) {
 
-			// draw
-			for (let i = 0; i < this.handSize; i++) {
-	
-				// shuffle if there's nothing in the draw pile
-				if (this.deck.length == 0) {
-					this.shuffle();
-					didShuffle = true;
-				}
-	
-				// abort if there are still no cards to draw (the entire deck is in the hand)
-				if (this.deck.length == 0) {
-					break;
-				}
-	
-				// draw a random card (removing it from the deck)
-				this.hand[i] = this.deck.splice(Math.floor(Math.random() * this.deck.length), 1)[0];
+			// shuffle if there's nothing in the draw pile
+			if (this.deck.length == 0) {
+				await this.shuffle();
 			}
 
-			setTimeout(() => {
-				this.updateAllElements();
-			}, didShuffle ? 200 : 0);
-		}, 200);
-	}
+			// abort if there are still no cards to draw (the entire deck is in the hand)
+			if (this.deck.length == 0) {
+				break;
+			}
 
-	shuffle() {
-		this.deck = this.deck.concat(this.discard);
-		this.discard = [];
+			// draw a random card (removing it from the deck)
+			this.hand[i] = this.deck.splice(Math.floor(Math.random() * this.deck.length), 1)[0];
+		}
+
 		this.updateAllElements();
 	}
 
-	updateAllElements() {
+	async shuffle() {
+		this.deck = this.deck.concat(this.discard);
+		this.discard = [];
+		await this.updateAllElements();
+	}
+
+	async updateAllElements() {
 		this.deck.sort();
 		this.discard.sort();
 		this.updateElement('#hand>div', this.hand, this.handSize);
 		this.updateElement('#deck>div', this.deck);
 		this.updateElement('#discard>div', this.discard);
+		await wait(500);
 	}
 
 	updateElement(query, cards, minimum) {

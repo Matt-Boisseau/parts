@@ -1,14 +1,27 @@
 import { WarehouseGrid } from './WarehouseGrid.js';
 import { Inventory } from './Inventory.js';
 
+var inventory;
+var warehouse;
+var busy;
+
+async function restock() {
+	busy = true;
+	document.querySelector('#restock-button').classList.add('busy');
+	await inventory.draw();
+	warehouse.addRandomBox(100, 2, 4);
+	document.querySelector('#restock-button').classList.remove('busy');
+	busy = false;
+}
+
 window.onload = () => {
 
 	// create an Inventory and draw
-	let inventory = new Inventory(5);
+	inventory = new Inventory(5);
 	inventory.draw();
 
 	// create a WarehouseGrid and append it to the page
-	let warehouse = new WarehouseGrid(7, 7, inventory);
+	warehouse = new WarehouseGrid(7, 7, inventory);
 	document.querySelector('#warehouse').appendChild(warehouse.element);
 
 	// add starting boxes
@@ -18,7 +31,8 @@ window.onload = () => {
 
 	// restock button event listener
 	document.querySelector('#restock-button').addEventListener('click', () => {
-		inventory.draw();
-		warehouse.addRandomBox(100, 2, 4);
+		if (!busy) {
+			restock();
+		}
 	});
 }
